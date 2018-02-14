@@ -7,7 +7,6 @@
   Tablas Catalogo, biene precargada.
   Tabla de Datos es donde se guardara la información.
   ENUM que solo tenga 5 o hasta 10 , además que no se agregan.
-
 */
 
 /* Esta instruccion solo de ejecuta para pruebas, una vez establecida la estructura 
@@ -19,7 +18,7 @@ CREATE DATABASE IF NOT EXISTS mexflix;
 USE mexflix;
 
 /* Tabla Catálogo , se coloca al principio para poder relacionarla con la de "movieseries" */
-/* ENUM('Coming Soon','Release','In Issue','Finished','Canceled') NOT NULL*/
+
 CREATE TABLE status
 (
   status_id INTEGER UNSIGNED PRIMARY KEY AUTO_INCREMENT,
@@ -52,8 +51,6 @@ CREATE TABLE movieseries(
   CASCADE = Si se cambiara el nombre de "release" a "liberado" en la tabla de "status"
   en automatico se actualiza en la tabla de "Movieserie"
    Mas documentacion : blog.openalfa.com -> como trabajan las restricciones en MySQL
-
-
    Crando la relacion con la tabla "Status"
    */
   FOREIGN KEY (status) REFERENCES status(status_id)
@@ -74,3 +71,28 @@ CREATE TABLE users
   pass CHAR(32) NOT NULL,
   role ENUM ('Admin','User') NOT NULL
 );
+
+/* Precargado la tabla de "Status" */
+/* ENUM('Coming Soon','Release','In Issue','Finished','Canceled') NOT NULL*/
+INSERT INTO status (status_id,status)
+  VALUES ( 1,'Coming Soon'),
+         ( 2,'Release'),
+         ( 3,'In Issue'),
+         ( 4,'Finished'),
+         ( 5,'Canceled');
+
+INSERT INTO users
+  SET   user = '@jonmircha',
+        email = 'jonmircha@bextlan.com',
+        nombre = 'jhonatan Mircha',
+        birthday = '1984-05-23',
+        pass = MD5('chafo'),
+        role = 'Admin';
+      
+INSERT INTO users
+  SET   user = '@user',
+        email = 'usuario@bextlan.com',
+        nombre = 'Usuario Mortal',
+        birthday = '2000-12-19',
+        pass = MD5('chimichangas'),
+        role = 'User';
