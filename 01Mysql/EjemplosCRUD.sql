@@ -31,6 +31,7 @@ SELECT title,category,country,genres,premiere,status FROM movieseries WHERE cate
 
 SELECT title,category,country,genres,premiere,status FROM movieseries WHERE status = 1 OR status = 3 ORDER BY premiere;
 
+<<<<<<< HEAD
 /* Consultas multiples
 
 Obtener datos de mas de una tabla.
@@ -90,3 +91,6 @@ Ejecucion : Gotham Serie EUA Crime, Drama Thriller 2014 "In Issue"
 SELECT * FROM movieseries
   WHERE MATCH (title,author,actors,genres)
   AGAINST('crime' IN BOOLEAN MODE);
+=======
+/* Consultas multiples */
+>>>>>>> 7a2058dd3b725ed91d7221c72e597cdab72413ff
