@@ -31,7 +31,6 @@ SELECT title,category,country,genres,premiere,status FROM movieseries WHERE cate
 
 SELECT title,category,country,genres,premiere,status FROM movieseries WHERE status = 1 OR status = 3 ORDER BY premiere;
 
-<<<<<<< HEAD
 /* Consultas multiples
 
 Obtener datos de mas de una tabla.
@@ -91,6 +90,52 @@ Ejecucion : Gotham Serie EUA Crime, Drama Thriller 2014 "In Issue"
 SELECT * FROM movieseries
   WHERE MATCH (title,author,actors,genres)
   AGAINST('crime' IN BOOLEAN MODE);
-=======
-/* Consultas multiples */
->>>>>>> 7a2058dd3b725ed91d7221c72e597cdab72413ff
+
+/* Consulta multiples con la opción FULL TEXT */
+SELECT ms.title,ms.category,ms.country,ms.genres,ms.premiere,s.status,ms.author,ms.actors
+  FROM movieseries AS ms 
+  INNER JOIN  status AS s 
+  ON ms.status = s.status_id
+  WHERE MATCH (ms.title,ms.author,ms.actors,ms.genres)
+  AGAINST ('drama' IN BOOLEAN MODE)
+  ORDER BY ms.premiere;
+
+/* Integridad Referencial */
+
+
+/*
+Con la validacion de cuando se Borrar se restringa:
+
+  MySQL pemrite eliminar los registros de la tabla "movieseries" del status = 1 Coming Soon 
+ */ 
+INSERT INTO status SET status = 'Otro Status', status_id = 0;
+
+/*
+  MySQL pemrite eliminar los registros de la tabla "movieseries" del status = 1 Coming Soon 
+
+*/ 
+DELETE FROM movieseries WHERE status = 1;
+
+/*
+ Permite eliminar el reg. con el status = 1 porque ya no hay registros asociados en la tabla
+ dependiente (movieseries)
+*/
+
+DELETE FROM status WHERE status_id = 2;
+/*
+  En esta ocasión no permitio borrar el reg. del status = 2, ya que en la tabla dependiente 
+  tiene registros, es donde se aplica la Integridad referencial.
+  Va a permitir borrarlo hasta que no existan registros con status = 2; en la tabla de "movieseries"
+*/
+
+/*
+  Con la validacion de cuando se Actualize lo realize en Cascada :  
+*/
+SELECT ms.title,ms.status,s.status_id,s.status 
+  FROM movieseries AS ms 
+  INNER JOIN status AS s 
+  ON ms.status = s.status_id
+  ORDER BY s.status,ms.title ASC;
+
+UPDATE status SET status_id = 7,status = 'Estrenada'
+  WHERE status_id = 3; 
