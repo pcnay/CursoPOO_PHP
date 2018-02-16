@@ -30,4 +30,24 @@ printf("<table>
                 </tr>");
         }
 printf("</table>");
+
+printf ("<h2>Insertando Registros </h2>");
+// Se definio en el "Modelo" que espera un arreglo.
+$new_status = array(
+  'status_id' => 0,
+  'status' => 'Otro status para pruebas'
+);
+
+// $status->create($new_status)
+printf ("<h2>Actualizando Registros </h2>");
+$update_status = array(
+  'status_id' => 11,
+  'status' => 'Se Cambia nombre status '
+);
+$status->update($update_status);
+ 
+printf ("<h2>Borrandoun  Registros </h2>");
+
+$status->delete(12);
+
 ?>
