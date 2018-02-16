@@ -8,9 +8,8 @@
     private static $db_host = 'localhost';
     private static $db_user = 'root';
     private static $db_pass = '';
-    private static $db_name;
-    protected $db_name;
-    private static $db_charset = 'utf-8';
+    private static $db_name;    
+    private static $db_charset = 'utf8';
     private $conn;
     protected $query;
     protected $rows = array();
@@ -34,7 +33,7 @@
         self::$db_pass,
         $this->db_name);
         //http://php.net/manual/es/mysqli.set-charset.php
-        $this->conn = set_charset(self::$db_charset)
+        $this->conn->set_charset(self::$db_charset);
     }
     // Privado ya que solo este tiene la desconexion a MySQL.
     private function db_close()
@@ -56,15 +55,16 @@
     protected function get_query()
     {
       $this->db_open();
-      $result = $this->conn->query($this-query);
+      $result = $this->conn->query($this->query);
       // fetch_assoc = Retorna el contenido de un reg. por el nombre de campo.
-      http://mx1.php.net/manual/en/mysqli-result.fetch-assoc.php
+      //http://mx1.php.net/manual/en/mysqli-result.fetch-assoc.php
       while ( $this->rows[]=$result->fetch_assoc() );
       $result->close();
 
       $this->db_close();
-
-      return $this->rows;
+      // quita el último elemento del arreglo, ya que cuando lo genera automáticamente
+      // a valor Null siempre.
+      return array_pop($this->rows);
     }
     
 
