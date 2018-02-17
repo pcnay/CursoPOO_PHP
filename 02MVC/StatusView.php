@@ -1,8 +1,8 @@
 <?php
-require('StatusModel.php');
+require('StatusControler.php');
 // Manejara solo código HTML.
 printf ("<h1>CRUD con MVC de la tabla 'Status' </h1>");
-$status = new StatusModel();
+$status = new StatusControler ();
 
 // $status->read(7);
 //$status->read();
@@ -38,16 +38,16 @@ $new_status = array(
   'status' => 'Otro status para pruebas'
 );
 
-// $status->create($new_status)
-printf ("<h2>Actualizando Registros </h2>");
-$update_status = array(
-  'status_id' => 11,
-  'status' => 'Se Cambia nombre status '
-);
-$status->update($update_status);
+ $status->create($new_status)
+  
+//printf ("<h2>Actualizando Registros </h2>");
+//$update_status = array(
+//  'status_id' => 11,
+//  'status' => 'Se Cambia nombre status '
+//);
+//$status->update($update_status);
  
-printf ("<h2>Borrandoun  Registros </h2>");
-
-$status->delete(12);
+//printf ("<h2>Borrandoun  Registros </h2>");
+//$status->delete(12);
 
 ?>
