@@ -37,7 +37,7 @@
         self::$db_host,
         self::$db_user,
         self::$db_pass,
-        $this->db_name);
+        self::$db_name);
         //http://php.net/manual/es/mysqli.set-charset.php
         $this->conn->set_charset(self::$db_charset);
     }
