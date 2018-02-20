@@ -17,17 +17,11 @@
     // Métodos
     // Solo se coloca el nombre pero se implementan en las clases hijas donde se hereden.
     // Operaciones CRUD.
-    // Agregando la instrucción REPLACE, eliminado "create()", "update()"
-    //abstract protected function replace();
-    //abstract protected function create();
-    //abstract protected function update();
-    abstract protected function set();
-    //abstract protected function read();
-    abstract protected function get();
-    //abstract protected function delete();
-    abstract protected function del();
-    
-    
+    abstract protected function create();
+    abstract protected function read();
+    abstract protected function update();
+    abstract protected function delete();
+
     // Privado ya que solo este tiene la conexion a MySQL.
     private function db_open()
     {
