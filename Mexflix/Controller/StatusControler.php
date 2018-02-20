@@ -1,5 +1,6 @@
  <?php
- require ('StatusModel.php');
+//  require ('StatusModel.php');
+// Se carga las clases .
 
  class StatusControler
  {
@@ -9,29 +10,25 @@
    }
 
    public function __destruct()
-   {
+   {  
      //unset($this); 
    }
 
    private $model;
 
-   public function create ($status_data = array() )
+   public function set ($status_data = array() )
    { 
      // Accesa a los métodos de la clase "statusModel", en el constructor se instancio la clase.
-    return $this->model->create($status_data);
+    return $this->model->set($status_data);
    }
 
-   public function read ($status_id = '' )
+   public function get($status_id = '' )
    {
-    return $this->model->read($status_id);
+    return $this->model->get($status_id);
    }
-   public function update ($status_data = array() )
+   public function del ($status_id = '' )
    {
-    return $this->model->update($status_data);
-   }
-   public function delete ($status_id = '' )
-   {
-    return $this->model->delete($status_id);
+    return $this->model->del($status_id);
    }
 
  }

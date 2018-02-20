@@ -71,8 +71,16 @@ DELETE FROM movieseries WHERE imdb_id = 'tt3749900';
 --   Crear status
   INSERT INTO status SET status_id = 0, status = 'Otro estado';
 
+  REPLACE status SET status_id = 0, status = “Otro estado”
+  REPLACE INTO status (status_id,status) VALUES (0,”Otro estado”)
+
 --   Actualizar status
   UPDATE status SET status = 'Other status' WHERE status_id = 6;
+  
+  REPLACE users SET status_id = 6, status = 'Other status';
+/* Se tiene que agregar los demas campos,
+si los maneja, de lo contrario les asigna NULL*/ 
+
 
 --   Eliminar status
   DELETE FROM status WHERE status_id = 6;
@@ -103,6 +111,17 @@ DELETE FROM movieseries WHERE imdb_id = 'tt3749900';
 --     Password
   UPDATE users SET pass = MD5('un_nuevo_password')
     WHERE user = '@usuario' AND email = 'usuario@midominio.com';
+
+REPLACE users SET user = '@usuario', pass = MD5('un nuevo password');
+/* Se tiene que agregar los demas campos, de lo contrario les asigna NULL*/ 
+
+
+REPLACE INTO status (status_id,status) VALUES (4,”Otro estado”);
+Ahora realiza una actualización 
+
+
+
+REPLACE users SET user = ‘@usuario’, pass = MD5(‘un nuevo password’);
 
 --   Eliminar
   DELETE FROM users WHERE user = '@usuario' AND email = 'usuario@midominio.com';

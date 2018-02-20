@@ -19,13 +19,13 @@
     // Operaciones CRUD.
     // Agregando la instrucción REPLACE, eliminado "create()", "update()"
     //abstract protected function replace();
-    //abstract protected function create();
-    //abstract protected function update();
-    abstract protected function set();
-    //abstract protected function read();
-    abstract protected function get();
-    //abstract protected function delete();
-    abstract protected function del();
+    abstract protected function create();
+    abstract protected function update();
+    //abstract protected function set();
+    abstract protected function read();
+    //abstract protected function get();
+    abstract protected function delete();
+    //abstract protected function del();
     
     
     // Privado ya que solo este tiene la conexion a MySQL.

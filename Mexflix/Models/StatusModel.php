@@ -1,18 +1,10 @@
 <?php
-require_once('Model.php');
+// require_once('Model.php');
+// Se utilizara una clase para cargar lo que se necesita.
+
 
 class StatusModel extends Model
 {
-  public $status_id;
-  public $status;
-
-  public function __construct()
-  {
-    // Este atributo es de la clase "Model", esta definido como protected pero si lo puede
-    // accesar ya que lo hereda.
-    $this->db_name = 'mexflix';    
-  }
-
   public function __destruct()
   {
   //  unset($this);
@@ -20,7 +12,7 @@ class StatusModel extends Model
 
   // Definiendo los metodos que se declararon en la clase "Model"
   // Se le indica a PHP que el valor que recibe es un arreglo
-  public function create($status_data = array())
+  public function set($status_data = array())
   {
     foreach ($status_data as $key =>$value)
     {
@@ -30,13 +22,13 @@ class StatusModel extends Model
       $$key = $value;
 
     }
-    $this->query = "INSERT INTO status (status_id,status) VALUES ($status_id,'$status')";
+    $this->query = "REPLACE INTO status (status_id,status) VALUES ($status_id,'$status')";
     $this->set_query();
   }
 
 
   // Si no se pasa parámetro le asigna un caracter en blanco.
-  public function read($status_id = '')
+  public function get($status_id = '')
   {
     $this->query = $sql = ($status_id != '')
     ?"SELECT * FROM status WHERE status_id = $status_id "
@@ -81,21 +73,7 @@ class StatusModel extends Model
     return $data;
   }
 
-  public function update($status_data = array())
-  {
-    foreach ($status_data as $key =>$value)
-    {
-      // http://php.net/manual/es/lenguaje.variable.variable.php
-      // Se convierte a Variable.
-      //Ya que "$key" es una llave del arreglo asociativo, y con $$key se convierte a Variable
-      $$key = $value;
-
-    }
-    $this->query = "UPDATE status SET status_id = $status_id,status = '$status' WHERE status_id = $status_id";
-    $this->set_query();
-
-  }
-  public function delete($status_id = '')  
+  public function del($status_id = '')  
   {
     $this->query = "DELETE FROM status WHERE status_id = $status_id";
     $this->set_query();
