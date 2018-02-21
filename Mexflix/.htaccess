@@ -1,10 +1,10 @@
-Options +FollowSymlinks
+#Options +FollowSymlinks
 
-RewriteEngine On
+#RewriteEngine On
 
-RewriteBase \Curso-PHP-POO\Mexflix  
+#RewriteBase \Curso-PHP-POO\Mexflix  
 
-RewriteCond %{SCRIPT_FILENAME} !-d
-RewriteCond %{SCRIPT_FILENAME} !-f
+#RewriteCond %{SCRIPT_FILENAME} !-d
+#RewriteCond %{SCRIPT_FILENAME} !-f
 
-Rewrite ^(.*)$ index.php?r=$1 [L]
+#Rewrite ^(.*)$ index.php?r=$1 [L]
