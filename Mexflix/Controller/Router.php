@@ -13,14 +13,19 @@ class Router
       // Valores minímos para que opera la sesión en PHP 7
       session_start([
         "use_only_cookies" => 1,
-        "auto_start" => 1,
+        // Este valor es solo modificable en ".htaccess, httpd.conf,user.ini
+        // No tine sentido en tiempo de ejecución decirle a PHP que autinicie sesion
+        // a la vez que inicias session.
+        //"auto_start" => 0, <=======
         "read_and_close" => true // La sesion se cierre automaticamente.
       ]);
 
-      // Una vez creada la sesion, se define una variable de sesion.
-      $_SESSION['ok'] = false;
     }
     
+    if (!isset($_SESSION['ok']))
+    {
+      $_SESSION['ok'] = false;
+    }
     // Crea una session para iniciar el programa. Formulario autenticacion o Página Principal
     // isset = Si existe una variable o esta definida.
     if ($_SESSION['ok'])
@@ -31,6 +36,9 @@ class Router
     else
     {
       // mostrar un formulario de autenticacion.
+      $login_form = new ViewController();
+      $login_form->load_view('Login');
+
     }
 
   }
