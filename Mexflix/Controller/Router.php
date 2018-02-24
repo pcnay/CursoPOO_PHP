@@ -36,8 +36,34 @@ class Router
     else
     {
       // mostrar un formulario de autenticacion.
-      $login_form = new ViewController();
-      $login_form->load_view('Login');
+      // Se realiza de esta manera para validar si el usuario tiene sesion, sin utilizar
+      // AJAX, es solo PHP.
+      // El formulario se definio con el método "POST" y se utilizan las variables superglobal
+      // POST para obtener los valores.
+      if (!isset($_POST["user"]) && !isset($_POST["pass"]))
+      {
+        $login_form = new ViewController();
+        $login_form->load_view('Login');
+      }
+      else
+      {
+        // Es aqui donde se da acceso a la aplicación.
+        // Es donde se hace los enlaces con las capas del MVC. Este enruta a las demas capas
+        // Llama a la Capa de Controller.
+        $user_session = new SessionController();
+        $sesion = $user_session->login($_POST["user"],$_POST["pass"]);
+        // var_dump($sesion); Revisa el contenido del arreglo o objeto.
+
+        if (empty($sesion))
+        {
+          printf("El usuario y/o el password son incorrectos");
+        }
+        else
+        {
+          printf("El usuario y el password son correctos");
+        }
+        
+      }
 
     }
 

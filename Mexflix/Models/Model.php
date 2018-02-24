@@ -8,7 +8,7 @@
     private static $db_host = 'localhost';
     private static $db_user = 'root';
     private static $db_pass = '';
-    private static $db_name;    
+    //private static $db_name;    
     private static $db_charset = 'utf8';
     private static $db_name = 'mexflix';
     private $conn;
@@ -62,6 +62,7 @@
     {
       $this->db_open();
       $result = $this->conn->query($this->query);
+      
       // fetch_assoc = Retorna el contenido de un reg. por el nombre de campo.
       //http://mx1.php.net/manual/en/mysqli-result.fetch-assoc.php
       while ( $this->rows[]=$result->fetch_assoc() );
