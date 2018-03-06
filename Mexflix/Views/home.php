@@ -17,5 +17,11 @@ printf($template,
       $_SESSION['birthday'],
       $_SESSION['role']
     );
-
+    
+    if(isset($_GET['validando'])) { ?>
+      <div class = "container">
+        <p class= "item  error"><?php printf($_GET['validando']); ?></p>
+      </div>
+    <?php } // El cierre del if ?>
+    
  ?>

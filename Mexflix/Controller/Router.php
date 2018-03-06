@@ -5,7 +5,6 @@ class Router
   
   public function __construct($route)
   {
-    $_SESSION['contador'] = 0;
     // Determina si existe una sesion de PHP.
     if (!isset($_SESSION))
     {
@@ -19,7 +18,9 @@ class Router
         // No tine sentido en tiempo de ejecución decirle a PHP que autinicie sesion
         // a la vez que inicias session.
         "auto_start", // <=======
-        "read_and_close" => true // La sesion se cierre automaticamente.
+        "read_and_close" => false // La sesion se cierre automaticamente.
+                                  // Si se coloca a "true" no funciona la variable Global 
+                                  // $_SESSION['ok'],
       ]);
 
     }
@@ -27,18 +28,13 @@ class Router
     // Determina si existe la variable $_SESSION['ok']
     if (!isset($_SESSION['ok']))
     {      
-      $_SESSION['ok'] = false;    
-      var_dump($_SESSION);
-      printf($_SESSION['contador']);
-      
+      $_SESSION['ok'] = false;        
     }
 
     // Crea una session para iniciar el programa. Formulario autenticacion o Página Principal
     // isset = Si existe una variable o esta definida.
     if ($_SESSION['ok'])
     {
-      $_SESSION['contador'] = $_SESSION['contador']++;
-      printf("Entro al session ok ");
       // Va toda la programación de la Aplicacion Web.
       // Se generara un controlador de Vista para el "Home" de bienvenida en la aplicacion.
       $controller = new ViewController();
@@ -54,9 +50,11 @@ class Router
       // El formulario se definio con el método "POST" y se utilizan las variables superglobal
       // POST para obtener los valores.
       if (!isset($_POST["user"]) && !isset($_POST["pass"]))
-      {        
+      { 
+        
         $login_form = new ViewController();
         $login_form->load_view('Login');
+       
       } 
       else
       {
@@ -75,8 +73,6 @@ class Router
         // Las variables que se agregan son las Variables globales de tipo POST que se crean en el formulario.
         // "user" y "pass".
         $sesion = $user_session->login($_POST["user"],$_POST["pass"]);
-        var_dump($sesion); // Revisa el contenido del arreglo o objeto.
-
     
         if (empty($sesion))
         {
@@ -97,9 +93,6 @@ class Router
         else
         {          
           $_SESSION['ok'] = true;
-          $_SESSION['contador'] = $_SESSION['contador']++;
-          var_dump($_SESSION['ok']);
-
           // Se rederige nuevamente al "home" de la aplicación.
           // se vuelve a ejecutar el constructor de "router.php" clase e inicia las validaciones
           // iniciales de nuevo.
@@ -126,7 +119,7 @@ class Router
           //$controller = new ViewController();
           //$controller->load_view('home');      
 
-          header('Location: ./?validando= ok ');
+          header('Location: ./');
         } // else if (empty(...))
     
       } // else - if (!isset($_POST["user"]) && !isset($_POST["pass"]))

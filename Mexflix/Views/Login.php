@@ -30,10 +30,4 @@
     <p class= "item  error"><?php printf($_GET['error']); ?></p>
   </div>
 <?php } // El cierre del if ?>
-<?php
-if(isset($_GET['validando'])) { ?>
-  <div class = "container">
-    <p class= "item  error"><?php printf($_GET['validando']); ?></p>
-  </div>
-<?php } // El cierre del if ?>
 
