@@ -78,7 +78,6 @@ class UsersModel extends Model
     // '$user' = es una cadena, si fuera número no necesita comillas simples.
     $this->query = "DELETE FROM users WHERE user = '$user'";
     $this->set_query();
-
   }
 
   // Verifica si se encuentra el usuario.
@@ -90,6 +89,7 @@ class UsersModel extends Model
     //var_dump($this->query);
 
     $this->get_query();
+    //printf("Consulto usuario");
 
     // Pasando a un arreglo la consulta obtenida.
     $data = array();

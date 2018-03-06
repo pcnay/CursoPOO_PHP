@@ -7,8 +7,7 @@
     {
       // Valida si el usuario existe.
       $this->session = new UsersModel();
-      // Si exite el usuario, se creara la sesion de usuario.
-
+      // Si exite el usuario, se creara la sesion de usuario. 
       
     }
     // Creara la sesión 
