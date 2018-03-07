@@ -36,9 +36,48 @@ class Router
     if ($_SESSION['ok'])
     {
       // Va toda la programación de la Aplicacion Web.
-      // Se generara un controlador de Vista para el "Home" de bienvenida en la aplicacion.
+
+      // Se decide a que ruta se ira. Esta variable "r" proviene por la URL.
+
+      $this->route = isset($_GET['r'])?$_GET['r']:'home';
+
+      // Una vez definida la programación de entrada a las sesiones.
+      // Ahora es definir toda la programación dentro de la session
+      // Las opciones del menu general de la aplicación se estan cargando las vistas.
+      // Es decir las rutas que manejara la aplicación.
       $controller = new ViewController();
-      $controller->load_view('home');      
+      switch ($this->route)
+      {
+        case 'home':
+          // Se generara un controlador de Vista para el "Home" de bienvenida en la aplicacion.
+          $controller->load_view('home');      
+          break;
+        case 'movieseries':
+          $controller->load_view('movieseries');      
+          break;
+        case 'usuarios':
+          $controller->load_view('users');      
+          break;
+        case 'status':
+          $controller->load_view('status');      
+          break;
+        case 'salir':
+          // Se accesa al controlador de Sesión para cerrarla
+          $user_session = new SessionController();
+          $user_session->logout();
+          break;
+        
+        default:
+          // En el caso de que el usuario no escriba correctamente las rutas en la URL.
+          // (Opciones del menú).
+          $controller->load_view('error404');
+          break;
+
+      }
+
+      
+
+
     }
     else
     {
@@ -76,7 +115,6 @@ class Router
     
         if (empty($sesion))
         {
-          printf("Variable sesion vacia ");
           // Como no se encontro el usuario vuelve a cargar la vista del login, pero ahora mostrara
          // un error através de la URL POST, se asigna la variable "error" el mensaje, se utiliza
          // * Location *  para recargar de nuevo la página.

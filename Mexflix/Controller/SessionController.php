@@ -22,7 +22,11 @@
     // Elimina la sesion
     public function logout()
     {
-
+      session_start();
+      session_destroy();
+      // Cuando se recargue de nuevo, redirigiendo al Inicio de la aplicacion, y se destruyo la 
+      //session ya no cargara el home de bienvenida sino el home del formulario login.
+      header('Location: ./');
     }
     public function __destruct()
     {
