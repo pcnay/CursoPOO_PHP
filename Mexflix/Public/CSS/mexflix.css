@@ -1,0 +1,102 @@
+html
+{
+  /* Son los colores de NetFlix*/
+   background-color:#141414;
+  color:#FFF;
+}
+
+/* Captura de Datos, areas de texto, ComboBox */
+input, textarea, select
+{  
+  color:#141414;
+}
+
+table
+{
+  width:100%;
+  color:#141414;
+}
+table td, table th 
+{
+  padding: .25rem;  
+}
+/* Los nombres de los campos en las tablas */
+table tr:first-child
+{
+  background-color:#E50914;
+  color:#FFFF
+}
+
+/* Filas impares con color gris fuerte */
+table tr:nth-child(even)
+{
+  background-color:#666;
+}
+/* Filas pares, excepto a la Primera aplica el color de gris claro*/
+table tr:nth-child(odd):not(:first-child)
+{
+  background-color: #999;
+}
+
+.logo
+{
+  font-size:3rem;
+  color:#E50914;  
+}
+
+/* Dando estilos a los enlaces */
+.menu a
+{
+  font-size:1.5rem;
+  text-decoration:none;
+  color:#E50914;  
+} 
+.menu a:hover
+{
+  color:#FFF; 
+} 
+
+.button
+{
+  /* 0.5rem = Arriba y Abajo; 1rem = Laterales */
+  padding:0.5rem,1rem;
+  background-color:#E50914;
+  color:#FFF;
+  cursor:pointer;
+}
+.button:hover
+{
+  opacity: .75;
+}
+
+.add
+{
+  background-color:#0B0;
+}
+
+.edit
+{
+  background-color:#0871B2;
+}
+
+.delete
+{
+  background-color:#D23641;
+}
+
+/* Agrega una barra de color Rojo y letras blancas al mensaje de "error" 
+teniendo encuenta que se utiliza el "resposisimple" de JonMircha.
+*/
+
+.error
+{
+  background-color:#E50914;
+  color:#FFF;
+}
+
+/* Se define el tamaño de la imagen de como viene grabada "no encontrado" */
+.img-404
+{
+  max-width:140px;
+  height:auto;
+}

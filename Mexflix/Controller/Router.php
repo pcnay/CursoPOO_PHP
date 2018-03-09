@@ -37,7 +37,7 @@ class Router
     {
       // Va toda la programación de la Aplicacion Web.
 
-      // Se decide a que ruta se ira. Esta variable "r" proviene por la URL.
+      // Se decide a que ruta se ira (Es decir que opción del menu se escogio). Esta variable "r" proviene por la URL.
 
       $this->route = isset($_GET['r'])?$_GET['r']:'home';
 
