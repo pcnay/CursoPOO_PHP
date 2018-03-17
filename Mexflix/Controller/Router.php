@@ -59,7 +59,28 @@ class Router
           $controller->load_view('users');      
           break;
         case 'status':
-          $controller->load_view('status');      
+          if (!isset($_POST['r']))
+          {
+            $controller->load_view('status');
+          }
+          // Revisando la condición para generar otra vista(pantalla) para
+          // agregar un "Status". 
+          else if($_POST['r'] == 'status-add' )
+          {
+            // Formulario para dar de alta.
+            $controller->load_view("status-add");
+          }
+          else if($_POST['r'] == 'status-edit' )
+          {
+            // Formulario para editar Status
+            $controller->load_view("status-edit");
+          }
+          else if($_POST['r'] == 'status-delete' )
+          {
+            // Formulario para borrar Status
+            $controller->load_view("status-delete");
+          }
+          
           break;
         case 'salir':
           // Se accesa al controlador de Sesión para cerrarla
