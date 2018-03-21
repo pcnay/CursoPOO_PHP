@@ -56,8 +56,29 @@ class Router
           $controller->load_view('movieseries');      
           break;
         case 'usuarios':
-          $controller->load_view('users');      
+          if (!isset($_POST['r']))
+          {
+            $controller->load_view('users');
+          }
+          // Revisando la condición para generar otra vista(pantalla) para
+          // agregar un "Status". 
+          else if($_POST['r'] == 'users-add' )
+          {
+            // Formulario para dar de alta.
+            $controller->load_view("users-add");
+          }
+          else if($_POST['r'] == 'users-edit' )
+          {
+            // Formulario para editar Status
+            $controller->load_view("users-edit");
+          }
+          else if($_POST['r'] == 'users-delete' )
+          {
+            // Formulario para borrar Status
+            $controller->load_view("users-delete");
+          }  
           break;
+
         case 'status':
           if (!isset($_POST['r']))
           {
@@ -93,12 +114,7 @@ class Router
           // (Opciones del menú).
           $controller->load_view('error404');
           break;
-
       }
-
-      
-
-
     }
     else
     {
