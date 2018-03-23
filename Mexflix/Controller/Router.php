@@ -62,20 +62,20 @@ class Router
           }
           // Revisando la condición para generar otra vista(pantalla) para
           // agregar un "Status". 
-          else if($_POST['r'] == 'users-add' )
+          else if($_POST['r'] == 'user-add' )
           {
             // Formulario para dar de alta.
-            $controller->load_view("users-add");
+            $controller->load_view("user-add");
           }
-          else if($_POST['r'] == 'users-edit' )
+          else if($_POST['r'] == 'user-edit' )
           {
             // Formulario para editar Status
-            $controller->load_view("users-edit");
+            $controller->load_view("user-edit");
           }
-          else if($_POST['r'] == 'users-delete' )
+          else if($_POST['r'] == 'user-delete' )
           {
             // Formulario para borrar Status
-            $controller->load_view("users-delete");
+            $controller->load_view("user-delete");
           }  
           break;
 
