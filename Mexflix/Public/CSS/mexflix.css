@@ -84,6 +84,11 @@ table tr:nth-child(odd):not(:first-child)
   background-color:#D23641;
 }
 
+.show
+{
+  background-color:#141414;
+}
+
 /* Agrega una barra de color Rojo y letras blancas al mensaje de "error" 
 teniendo encuenta que se utiliza el "resposisimple" de JonMircha.
 */
@@ -99,4 +104,15 @@ teniendo encuenta que se utiliza el "resposisimple" de JonMircha.
 {
   max-width:140px;
   height:auto;
+}
+
+/* Definiendo los tamaños del video del Trailer que se utiliza en la etiqueta "iframe"*/ 
+.poster
+{
+  max-width:200px;
+}
+.trailer iframe
+{
+  width:560px;
+  height:315px;
 }

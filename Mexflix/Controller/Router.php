@@ -53,7 +53,35 @@ class Router
           $controller->load_view('home');      
           break;
         case 'movieseries':
-          $controller->load_view('movieseries');      
+          if (!isset($_POST['r']))
+          {
+            $controller->load_view('movieseries');
+          }
+          // Revisando la condición para generar otra vista(pantalla) para
+          // agregar una "Pelicula". 
+          else if($_POST['r'] == 'movieserie-add')
+          {
+            // Formulario para dar de alta.
+            $controller->load_view("movieserie-add");
+          }
+          else if($_POST['r'] == 'movieserie-edit' )
+          {
+            // Formulario para editar Status
+            $controller->load_view("movieserie-edit");
+          }
+          else if($_POST['r'] == 'movieserie-delete' )
+          {
+            // Formulario para borrar Status
+            $controller->load_view("movieserie-delete");
+          }  
+          // Este opción es para mostrar el resto de las opciones, cuando se oprime el boton 
+          // "mostrar mas información".
+          else if($_POST['r'] == 'movieserie-show' )
+          {
+            // Formulario para borrar Status
+            $controller->load_view("movieserie-show");
+          }  
+          
           break;
         case 'usuarios':
           if (!isset($_POST['r']))
@@ -78,7 +106,6 @@ class Router
             $controller->load_view("user-delete");
           }  
           break;
-
         case 'status':
           if (!isset($_POST['r']))
           {
