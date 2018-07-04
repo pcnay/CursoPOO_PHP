@@ -13,17 +13,20 @@ class MovieSeriesModel extends Model
   // Definiendo los metodos que se declararon en la clase "Model"
   // Se le indica a PHP que el valor que recibe es un arreglo
   public function set($ms_data = array())
-  {
+  { 
     foreach ($ms_data as $key =>$value)
     {
       // http://php.net/manual/es/lenguaje.variable.variable.php
       // Se convierte a Variable.
-      //Ya que "$key" es una llave del arreglo asociativo, y con $$key se convierte a Variable
+      //Ya que "$key"   es una llave del arreglo asociativo, y con $$key se convierte a Variable
       $$key = $value;
 
     }
+    // Este reemplazo de variables se realiza ya que en el campo "plot" en algunas ocaciones se maneja
+    // bruno\'s que se utiliza en idioma Ingles.
+    $plot = str_replace("'","\'",$plot);
     $this->query = "REPLACE INTO movieseries SET imdb_id='$imdb_id',title='$title',plot='$plot',author='$author',
-      actors='$actors',country='$country',primiere='$premiere',trailer='$trailer',poster='$poster',
+      actors='$actors',country='$country',premiere='$premiere',trailer='$trailer',poster='$poster',
       rating=$rating,genres='$genres',status=$status,category='$category'";
     $this->set_query();
   }

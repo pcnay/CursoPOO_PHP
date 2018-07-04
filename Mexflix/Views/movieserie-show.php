@@ -8,6 +8,7 @@
     $ms_controller = new MovieSeriesController();
     $ms = $ms_controller->get($_POST['imdb_id']);
     // Determina si la consulta esta vacia.
+    
     if (empty($ms))
     {
       printf('
@@ -80,7 +81,5 @@
     // Mensaje de error de recurso no Encontrado.
     $controller = new ViewController();
     $controller->load_view('error404');
-    print(var_dump($_POST['r']));
-
   }
 ?>

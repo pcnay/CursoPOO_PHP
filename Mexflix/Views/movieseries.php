@@ -62,7 +62,7 @@
               <input type="hidden" name="r" value="movieserie-show">
               <!-- Se enviará el "ID" de MovieSerie -->
               <input type="hidden" name="imdb_id" value="'.$ms[$n]["imdb_id"].'">
-              <!-- Mandara llamar a un formulario para editar una "MovieSerie" -->
+              <!-- Mandara llamar a un formulario para mostrar una "MovieSerie" -->
               <input class="button show" type="submit" value="Mostrar">
             </form> 
           </td>
